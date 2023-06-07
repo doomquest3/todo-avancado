@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilo css -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/rodape.css">
+
+    <!-- Javascript -->
+    <script src="/js/script.js" defer></script>
+
+
+    <!-- Font- awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <title>To Do List com javascript puro</title>
+</head>
+<body onload="recuperarDados()">
+    <div class="todo-container">
+        <!-- Título do container -->
+        <header>
+            <h1>Todo avançado</h1>
+        </header>
+
+        <!-- Formulário para adicionar tarefa -->
+        <form action="" id="todo-form">
+            <p>Adicione a sua tarefa:</p>
+            <div class="form-control">
+                <input type="text" name="" id="todo-input" placeholder="o você vai fazer hoje?">
+                <button type="submit">
+                    <i class="fa-thin fa-plus"></i>
+                </button>
+            </div>
+
+        </form>
+
+        <!-- Formulário de edição -->
+        <form action="" id="edit-form" class="hide">
+            <p>Edite a sua tarefa:</p>
+            <div class="form-control">
+                <input type="text" name="" id="edit-input">
+                <button type="submit">
+                    <i class="fa-solid fa-check-double"></i>
+                </button>
+            </div>
+            <button id="cancel-edit-btn">Cancelar</button>
+
+        </form>
+
+        <!-- Barra de pesquisa e filtro -->
+        <div id="toolbar">
+            <div id="search">
+                <h4>Pesquisar:</h4>
+                <form >
+                    <input type="text" name="" id="search-input" placeholder="Buscar">
+                    <button id="erase-button">
+                        <i class="fa-solid fa-delete-left"></i>
+                    </button>
+                </form>
+            </div>
+            
+            <div id="filter">
+                <h4>Filtar:</h4>
+                <select name="" id="filter-select">
+                    <option value="all">Todos</option>
+                    <option value="done">Feitos</option>
+                    <option value="Todo">A fazer</option>
+                </select>
+            </div>
+
+        </div>
+        
+        <!-- Lista das tarefas -->
+        <div id="todo-list">
+            
+        </div>
+
+    </div>
+
+    <!-- Rodapé com minhas redes sociais para contato -->
+    <footer class="rodape-container">
+            <ul class="rodape-list">
+                <li>
+                    <a href="https://github.com/doomquest3" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github fa-2x"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.linkedin.com/in/leandro-de-jesus-a14525258/" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-instagram fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+.rodape-container{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fff;
+    
+    position: absolute;
+    bottom: 0rem;   
+    
+}
+
+.rodape-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+
+}

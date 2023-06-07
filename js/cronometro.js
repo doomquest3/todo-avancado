@@ -1,0 +1,1 @@
+// Código javascript para criação do cronometro.
