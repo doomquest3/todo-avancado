@@ -1,0 +1,82 @@
+/* Container de contéudo da lista e do temporizador */
+.container{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Container do temporizador */
+.temp-container{
+    width: 25%;
+
+    margin: 3rem auto;
+    padding: 1.5rem;
+    
+    background-color: #f5f5f5;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+/* Título do temporizador */
+.temp-container header{
+    text-align: center;
+    
+    padding: 0 1rem;
+    margin: 0 0 1rem;
+    
+    border-bottom: 0.25rem solid #102F5e;
+    
+}
+
+/* Título do container do temporizador */
+.temp-container header > h1{
+    font-size: 1.75rem;
+
+}
+
+/* Formulário do temporizador */
+.form-tempo{
+    width: 90%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+/* Paragráfo do formulário do temporizador */
+.form-tempo > p{
+    border-bottom: 1px solid #102F5e;
+    padding: 0 0 0.25rem 0;
+
+}
+
+/* Input de temporizador */
+.temp-control{
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+
+}
+
+/* Output das horas */
+.temporizador{
+    width: 90%;
+    text-align: center;
+
+    padding: 0.25rem;
+    border: 1px solid #102F5e;
+
+}
+
