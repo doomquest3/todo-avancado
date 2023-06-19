@@ -1,3 +1,7 @@
+//Importações
+import model from './models/item.model.js';
+import {funcoes} from './functions.js';
+
 // Seleção de elementos
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#todo-input");
@@ -10,61 +14,16 @@ const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 
 let oldInputValue;
-var item;
 
 
-
-
-
-// Funções
-// Localizar item localstorage
-const localizarItem = (text) =>{
-    let n = Object.keys(localStorage);
-
-    for(let i of n){
-        if(text.localeCompare(localStorage.getItem(i))===0){
-            console.log(i);
-            return i;
-        }
-
-    }
+window.carregarInfo = function(){
+    funcoes.carregarDados();
 
 }
 
-// Salvar dados na local storage
-const saveLocalStorage = (text) =>{
-    let num = localStorage.length;
-    localStorage.setItem(num, text);
-
-}
-
-// Recuperar dados da local storage.
-const recuperarDados = () =>{
-    let n = Object.keys(localStorage);
-    for(let i of n){
-        let textDate = localStorage.getItem(i);
-        saveTodo(textDate);
-
-    }
-
-}
-
-//deletar item da local storage.
-
-const deletarDado = (text) =>{    
-    let i = localizarItem(text);
-    localStorage.removeItem(i);
-    
-}
-
-//Trocar item na localstorage.
-const substituirItem = (num, text) =>{
-    localStorage.setItem(num, text);
-
-}
 
 // Adicionar item para lista
-const saveTodo=(text) =>{
+window.saveTodo= function(text){
 
     const todo = document.createElement("div")
     todo.classList.add("todo")
@@ -132,7 +91,7 @@ todoForm.addEventListener("submit", (e)=>{
 
     if(valueInput){
         saveTodo(valueInput);
-        saveLocalStorage(valueInput);
+        funcoes.saveLocalStorage(valueInput);
     }else{
         //Mostra erro na tela
 
@@ -155,7 +114,7 @@ document.addEventListener("click", (e)=>{
 
     }else if(targetEl.classList.contains("remove-todo")){
         let variavel =  parentEl.querySelector("h3").innerText
-        deletarDado(variavel);
+        funcoes.deletarDado(variavel);
         parentEl.remove();
 
     }else if(targetEl.classList.contains("edit-todo")){
@@ -179,10 +138,10 @@ editForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     
     const editValue = editInput.value;
-    let number = localizarItem(oldInputValue);
+    let number = funcoes.localizarItem(oldInputValue);
     if(editValue){
         updateTodo(editValue); 
-        substituirItem(number, editValue);
+        funcoes.substituirItem(number, editValue);
 
     }
     toggleForms();

@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="/css/temp-container.css">
 
     <!-- Javascript -->
-    <script src="/js/script.js" defer></script>
+    <script type="module" src="/js/models/item.model.js" defer></script>
+    <script type="module" src="/js/functions.js" defer></script>
+    <script type="module" src="/js/main.js" defer></script>
     <script src="/js/cronometro.js" defer></script>
 
 
@@ -21,7 +23,7 @@
 
     <title>To Do List com javascript puro</title>
 </head>
-<body onload="recuperarDados()">
+<body onload="carregarInfo()">
     <div class="container">
         <div class="todo-container">
             <!-- Título do container -->
