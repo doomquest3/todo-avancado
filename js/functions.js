@@ -1,22 +1,35 @@
+import model from './models/item.model.js';
+var modelo = model;
 // Funções
 // Localizar item localstorage
 export const localizarItem = (text) =>{
     let n = Object.keys(localStorage);
 
     for(let i of n){
-        if(text.localeCompare(localStorage.getItem(i))===0){
+        modelo = JSON.parse(localStorage.getItem(i));
+
+        if(text.localeCompare(modelo.text)===0){
             console.log(i);
-            return i;
+            return modelo;
+
         }
 
     }
 
 }
 
+// Verificar quantidade de itens na local storage.
+export const qtdLocalStorage = () =>{
+    let n = Number(localStorage.length);
+    return n;
+
+}
+
 // Salvar dados na local storage
-export const saveLocalStorage = (text) =>{
+export const saveLocalStorage = (modelo) =>{
     let num = localStorage.length;
-    localStorage.setItem(num, text);
+
+    localStorage.setItem(num, JSON.stringify(modelo));
 
 }
 
@@ -24,8 +37,8 @@ export const saveLocalStorage = (text) =>{
 export const carregarDados = () =>{
     let n = Object.keys(localStorage);
     for(let i of n){
-        let textDate = localStorage.getItem(i);
-        saveTodo(textDate);
+        modelo = JSON.parse(localStorage.getItem(i));
+        saveTodo(modelo);
 
     }
 
@@ -33,14 +46,31 @@ export const carregarDados = () =>{
 
 //deletar item da local storage.
 export const deletarDado = (text) =>{    
-    let i = localizarItem(text);
-    localStorage.removeItem(i);
+    modelo = localizarItem(text);
+    localStorage.removeItem(modelo.id);
     
 }
 
 //Trocar item na localstorage.
-export const substituirItem = (num, text) =>{
-    localStorage.setItem(num, text);
+export const substituirItem = (oldText, novoModelo) =>{
+    let oldModelo = modelo;
+    oldModelo = localizarItem(oldText);
+    oldModelo = novoModelo;
+
+    localStorage.setItem(modelo.id, JSON.stringify(oldModelo));
+
+}
+
+// Verificar modelo
+export const verificarModelo = (modelo) =>{
+    if(modelo.status === 'done'){
+        modelo.status = 'todo';
+
+    }else if(modelo.status === 'todo'){
+        modelo.status = 'done';
+
+    }
+    return modelo;
 
 }
 

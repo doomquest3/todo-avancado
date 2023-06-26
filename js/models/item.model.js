@@ -1,7 +1,7 @@
 let TodoItem = {
     id: 0,
     text: '',
-    state: '',
+    status: '',
 
 }
 

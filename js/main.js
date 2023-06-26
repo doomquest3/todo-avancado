@@ -1,6 +1,7 @@
 //Importações
 import model from './models/item.model.js';
-import {funcoes} from './functions.js';
+var modelo = model;
+import { funcoes } from './functions.js';
 
 // Seleção de elementos
 const todoForm = document.querySelector("#todo-form");
@@ -16,25 +17,26 @@ const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 let oldInputValue;
 
 
-window.carregarInfo = function(){
+window.carregarInfo = () => {
     funcoes.carregarDados();
 
 }
 
 
 // Adicionar item para lista
-window.saveTodo= function(text){
+window.saveTodo = (modelo) => {
 
     const todo = document.createElement("div")
-    todo.classList.add("todo")
+    todo.classList.add("todo");
+    todo.classList.add(`${modelo.status}`);
 
     const todoTitle = document.createElement("h3");
-    todoTitle.innerText = text;
+    todoTitle.innerText = modelo.text;
     todo.appendChild(todoTitle);
 
     const doneBtn = document.createElement("button");
     doneBtn.classList.add("finish-todo");
-    doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>'
+    doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
     todo.appendChild(doneBtn);
     
     const editBtn = document.createElement("button");
@@ -77,21 +79,19 @@ const updateTodo = (text) =>{
 
 }
 
-
-
-
-
-
 // Eventos
 // Evento de adicionar formulário
 todoForm.addEventListener("submit", (e)=>{
     e.preventDefault();
-
-    const valueInput = todoInput.value;
-
-    if(valueInput){
-        saveTodo(valueInput);
-        funcoes.saveLocalStorage(valueInput);
+    modelo.id = funcoes.qtdLocalStorage();
+    modelo.text = todoInput.value;
+    modelo.status = 'todo';
+    
+    console.log(modelo);
+    if(modelo){
+        saveTodo(modelo.text);
+        funcoes.saveLocalStorage(modelo);
+        
     }else{
         //Mostra erro na tela
 
@@ -99,7 +99,7 @@ todoForm.addEventListener("submit", (e)=>{
 
 });
 
-
+// Mudar texto do item.
 document.addEventListener("click", (e)=>{
     const targetEl = e.target;
     const parentEl = targetEl.closest("div");
@@ -111,6 +111,11 @@ document.addEventListener("click", (e)=>{
 
     if(targetEl.classList.contains("finish-todo")){
         parentEl.classList.toggle("done");
+        let variavel = parentEl.querySelector("h3").innerText;
+        let novoModelo = funcoes.localizarItem(variavel);
+        novoModelo = funcoes.verificarModelo(novoModelo);
+        funcoes.substituirItem(variavel, novoModelo);
+        
 
     }else if(targetEl.classList.contains("remove-todo")){
         let variavel =  parentEl.querySelector("h3").innerText
@@ -133,15 +138,17 @@ cancelEditBtn.addEventListener('click', (e)=>{
 
 })
 
-
+// Editar formulário.
 editForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     
     const editValue = editInput.value;
-    let number = funcoes.localizarItem(oldInputValue);
+       
     if(editValue){
-        updateTodo(editValue); 
-        funcoes.substituirItem(number, editValue);
+        updateTodo(editValue);
+        modelo = funcoes.localizarItem(oldInputValue);
+        modelo.text = editValue; 
+        funcoes.substituirItem(oldInputValue, modelo);
 
     }
     toggleForms();
@@ -154,3 +161,4 @@ filter.addEventListener("select", (e)=>{
     
 
 })
+

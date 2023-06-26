@@ -80,3 +80,20 @@
 
 }
 
+
+
+/*=============== RESPONSIVIDADE =============== */
+
+@media (max-width: 796px) {
+    .container{
+        display: flex;
+        flex-direction: column-reverse;
+            
+    }
+    
+    .temp-container{
+        width: 50%;
+
+    }
+    
+}
