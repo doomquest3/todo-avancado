@@ -1,7 +1,4 @@
-### Todo list avançado
-
-<hr>
-<h2>Todo list avançado</h2>
+<h1>Todo list avançado</h1>
 <hr>
 <p>
   Um todo list avançado desenvolvido para melhorar a concentração 
